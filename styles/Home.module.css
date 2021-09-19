@@ -1,8 +1,32 @@
-.container {
+.defaultContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.signedInContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabs {
+  color: #ffffff;
+  background-color: #1ed761;
+  border: none;
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 16px;
+  transition: 0.1s;
+}
+
+.tabs:hover {
+  cursor: pointer;
+  filter: brightness(0.85);
 }
 
 .title {
