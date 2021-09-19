@@ -3,9 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 15em;
+  padding: 20px 0px 0px 0px;
+  border: 1px solid gray;
 }
 
-.title {
-  color: #ffffff;
+.name {
+  color:white;
   text-align: center;
 }
