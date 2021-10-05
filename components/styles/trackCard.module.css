@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 15em;
+  width: 100%;
   padding: 20px 0px 0px 0px;
   border: 1px solid gray;
+  border-radius: 2rem;
 }
 
 .name {

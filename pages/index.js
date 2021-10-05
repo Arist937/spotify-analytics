@@ -27,9 +27,12 @@ export default function Home() {
         })
         .then((response) => {
           const res = response.data;
-          setDisplayName(res.display_name);
+          setDisplayName("Welcome to Spotify Analytics, " + res.display_name);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setDisplayName("Welcome to Spotify Analytics");
+        });
       axios
         .get("https://api.spotify.com/v1/me/top/tracks", {
           headers: {
@@ -42,7 +45,7 @@ export default function Home() {
         })
         .then((response) => {
           const res = response.data;
-          setTopTracks(response.data.items);
+          setTopTracks(res.items);
         })
         .catch((err) => console.log(err));
       axios
@@ -57,8 +60,7 @@ export default function Home() {
         })
         .then((response) => {
           const res = response.data;
-          console.log(res);
-          setTopArtists(response.data.items);
+          setTopArtists(res.items);
         })
         .catch((err) => console.log(err));
     }
@@ -72,10 +74,14 @@ export default function Home() {
       </Head>
       {signedIn ? (
         <div className={styles.signedInContainer}>
-          <h1 className={styles.title}>
-            Welcome to Spotify Analytics, {displayName}
-          </h1>
-          <div>
+          <h1 className={styles.title}>{displayName}</h1>
+          <div
+            style={{
+              display: "grid",
+              gap: "8px",
+              gridTemplateColumns: "auto auto auto",
+            }}
+          >
             <button
               className={styles.tabs}
               onClick={() => {
@@ -102,14 +108,7 @@ export default function Home() {
             </button>
           </div>
           {category === "Tracks" ? (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto auto auto auto auto",
-                gap: "20px 20px",
-                padding: 10,
-              }}
-            >
+            <div className={styles.gridContainer}>
               {topTracks &&
                 topTracks.map((track, index) => (
                   <TrackCard
@@ -121,14 +120,7 @@ export default function Home() {
                 ))}
             </div>
           ) : category === "Artists" ? (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto auto auto auto auto",
-                gap: "20px 20px",
-                padding: 10,
-              }}
-            >
+            <div className={styles.gridContainer}>
               {topArtists &&
                 topArtists.map((artist, index) => (
                   <TrackCard
@@ -141,7 +133,9 @@ export default function Home() {
             </div>
           ) : (
             <div style={{ padding: 10 }}>
-              <h1 className={styles.title}>This Feature is Coming Soon</h1>
+              <h1 style={{ fontSize: 36, color: "#FFFFFF" }}>
+                This Feature is Coming Soon
+              </h1>
             </div>
           )}
         </div>
